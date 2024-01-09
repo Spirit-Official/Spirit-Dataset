@@ -1,0 +1,65 @@
+DROP SCHEMA IF EXISTS spirit;
+CREATE SCHEMA IF NOT EXISTS spirit DEFAULT CHARACTER SET utf8;
+USE spirit;
+
+-- -------------------------------------------
+
+DROP TABLE IF EXISTS spirit.user;
+
+CREATE TABLE IF NOT EXISTS spirit.user (
+    userId VARCHAR(60),
+    userName VARCHAR(20),
+    userGender TINYINT(1),
+    universityId INT,
+    majorId INT,
+    studentId INT,
+    userPoint INT,
+    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    PRIMARY KEY(userId)
+);
+
+DROP TABLE IF EXISTS spirit.university;
+
+CREATE TABLE IF NOT EXISTS spirit.university (
+    universityId INT NOT NULL AUTO_INCREMENT,
+    universityName VARCHAR(30),
+    studentCount INT NOT NULL DEFAULT 0,
+    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    PRIMARY KEY(universityId)
+);
+
+DROP TABLE IF EXISTS spirit.major;
+
+CREATE TABLE IF NOT EXISTS spirit.major (
+    majorId INT NOT NULL AUTO_INCREMENT,
+    universityId INT,
+    majorName VARCHAR(50),
+    majorStudentCount INT NOT NULL DEFAULT 0,
+    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    PRIMARY KEY(majorId)
+);
+
+DROP TABLE IF EXISTS spirit.question;
+
+CREATE TABLE IF NOT EXISTS spirit.question (
+    questionId INT NOT NULL AUTO_INCREMENT,
+    question VARCHAR(100),
+    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    PRIMARY KEY(questionId)
+);
+
+DROP TABLE IF EXISTS spirit.answer;
+
+CREATE TABLE IF NOT EXISTS spirit.answer (
+    answerId INT NOT NULL AUTO_INCREMENT,
+    questionId INT,
+    questionUserId VARCHAR(60),
+    answerUserId VARCHAR(60),
+    created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+    PRIMARY KEY(answerId)
+);
