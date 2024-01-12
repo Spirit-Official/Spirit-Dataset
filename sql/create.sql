@@ -24,6 +24,7 @@ DROP TABLE IF EXISTS spirit.university;
 CREATE TABLE IF NOT EXISTS spirit.university (
     universityId INT NOT NULL AUTO_INCREMENT,
     universityName VARCHAR(30),
+    -- universityBranch VARCHAR(10),
     studentCount INT NOT NULL DEFAULT 0,
     created DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     updated DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
